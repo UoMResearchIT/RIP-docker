@@ -12,6 +12,7 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
 ENV PATH=/root/miniconda3/bin:$PATH
 RUN conda init bash \
  && conda update -n root --all -y \
+ && conda config --set auto_activate_base false \
  && conda create --name ncl_stable -c conda-forge ncl c-compiler fortran-compiler cxx-compiler -y
 
 ### Configure RIP
@@ -47,3 +48,19 @@ RUN source /root/miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable 
 ## !! Warning: Type mismatch between actual argument at (1) and actual argument at (2) (INTEGER(4)/CHARACTER(*)).
 ## !! Warning: Fortran 2018 deleted feature: Shared DO termination label
 ## !! Warning: Fortran 2018 deleted feature: Arithmetic IF statement
+
+ENV PATH=/RIP_47/:$PATH
+
+
+
+WORKDIR /SAMPLE
+WORKDIR /SAMPLE/RIPDP
+WORKDIR /SAMPLE/WRFData
+COPY wrfout_d01.tar.gz /SAMPLE/WRFData
+RUN tar -xzf wrfout_d01.tar.gz \
+ && rm wrfout_d01.tar.gz \
+ && cp /RIP_47/sample_infiles/ripdp_wrfarw_sample.in /SAMPLE/RIPDP/rdp_wrfarw.in \
+ && cp /RIP_47/sample_infiles/rip_sample.in /SAMPLE/rip.in
+WORKDIR /SAMPLE
+
+#WORKDIR /USER
