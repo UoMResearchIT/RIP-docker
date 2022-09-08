@@ -50,6 +50,7 @@ RUN source /root/miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable 
 ## !! Warning: Fortran 2018 deleted feature: Arithmetic IF statement
 
 ENV PATH=/RIP_47/:$PATH
+ENV RIP_ROOT=/RIP_47
 
 
 
@@ -59,8 +60,8 @@ WORKDIR /SAMPLE/WRFData
 COPY wrfout_d01.tar.gz /SAMPLE/WRFData
 RUN tar -xzf wrfout_d01.tar.gz \
  && rm wrfout_d01.tar.gz \
- && cp /RIP_47/sample_infiles/ripdp_wrfarw_sample.in /SAMPLE/RIPDP/rdp_wrfarw.in \
- && cp /RIP_47/sample_infiles/rip_sample.in /SAMPLE/rip.in
+ && cp /RIP_47/sample_infiles/ripdp_wrfarw_sample.in /SAMPLE/RIPDP/rdp_wrfarw \
+ && cp /RIP_47/sample_infiles/rip_sample.in /SAMPLE/rip_sample.in
 WORKDIR /SAMPLE
 
 #WORKDIR /USER
