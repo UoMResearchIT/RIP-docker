@@ -27,14 +27,8 @@ The wrfout files will be pre-processed with ripdp.
 To run ripdp you first need a "namelist" file, that configures what ripdp will do.
 Since ripdp will generate a lot of files, it is better to first create a directory for them.
 For the case of the sample run, the directory **/SAMPLE/RIPDP** has already been created.
-A sample namelist file looks like this:
-```
-&userin
- ptimes=0,-72,1,ptimeunits='h',tacc=90.,discard='LANDMASK','H2SO4',
- iexpandedout=1
- &end
-```
-A file like the above is already saved in the **RIPDP** directory, under the name ***rdp_sample***.
+
+A sample namelist file is already saved in the **RIPDP** directory, under the name ***rdp_sample***.
 We can then run ripdp as:
 
 ```
