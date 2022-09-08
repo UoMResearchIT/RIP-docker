@@ -77,3 +77,7 @@ To be able to see the plots in **cgm** files, we need to use **idt**, by running
 ```
 idt /Sample/rip_sample.cgm
 ```
+or
+```
+idt /Sample/BackTraj/traj_plot.cgm
+```

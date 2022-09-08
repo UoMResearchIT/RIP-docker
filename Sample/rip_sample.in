@@ -18,6 +18,8 @@
 ===========================================================================
 ----------------------    Plot Specification Table    ---------------------
 ===========================================================================
+#
+#
 feld=xlus; ptyp=hh; chfl; cosq=1,dark.gray,2,light.yellow,3,light.green,>
    4,yellow,5,yellow,6,light.green,7,light.yellow,8,light.green,9,light.green,>
    10,light.yellow,11,green,12,dark.green,13,green,14,dark.green,15,green,>
@@ -27,17 +29,23 @@ feld=map; ptyp=hb
 feld=tic; ptyp=hb
 time=0
 ===========================================================================
+#
+#
 feld=ter; ptyp=hc; cint=100; colr=red
 feld=map; ptyp=hb
 feld=tic; ptyp=hb
 time=0
 ===========================================================================
+#
+#
 feld=ter; ptyp=hc; cint=50; cmth=fill; cosq=-1e-5,light.blue,1e-5,white,>
    3000,brown
 feld=map; ptyp=hb
 feld=tic; ptyp=hb
 time=0
 ===========================================================================
+#
+#
 feld=tmc; ptyp=hc; vcor=s; levs=1fb; cint=2; cmth=fill;>
    cosq=-32,light.violet,-24,violet,-16,blue,-8,green,0,yellow,8,red,>
    16,orange,24,brown,32,light.gray
@@ -46,6 +54,8 @@ feld=uuu,vvv; ptyp=hv; vcmx=-1; colr=white; intv=5
 feld=map; ptyp=hb
 feld=tic; ptyp=hb
 ===========================================================================
+#
+#
 feld=tmc; ptyp=hc; vcor=p; levs=850,700,-300,100; cint=2; cmth=fill;>
    cosq=-32,light.violet,-24,violet,-16,blue,-8,green,0,yellow,8,red,>
    16,orange,24,brown,32,light.gray
@@ -54,12 +64,16 @@ feld=uuu,vvv; ptyp=hv; vcmx=-1; colr=white; intv=5
 feld=map; ptyp=hb
 feld=tic; ptyp=hb
 ===========================================================================
+#
+#
 feld=pvo; ptyp=vc; crsa=10,30; crsb=30,10; vcor=p; vwin=1050,200; cint=.25;>
    cmth=fill; cosq=0,white,4,dark.gray; cbeg=0; cend=5
 feld=the; ptyp=vc; cint=2; colr=red
 feld=uuu,vvv,omg; ptyp=vv
 feld=tic; ptyp=vb
 ===========================================================================
+#
+#
 feld=tic; ptyp=sb; sloc=KORD; hodo; sndg
 feld=tmc; ptyp=sc; colr=red
 feld=tdp; ptyp=sc; colr=blue
@@ -75,4 +89,3 @@ feld=dbz; ptyp=hc; vcor=s; levs=1fb; nohl; cbeg=5; cend=75; cint=5;>
 feld=map; ptyp=hb
 feld=tic; ptyp=hb
 ===========================================================================
-
