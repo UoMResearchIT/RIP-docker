@@ -21,6 +21,10 @@ It is important to make sure that your ncl_stable environment is active before u
 ```
 conda activate ncl_stable
 ```
+Also, make sure that you are in the directory with your .in files. For the sample run, this is
+```
+cd /Sample
+```
 
 ### Prepare the data
 The wrfout files will be pre-processed with ripdp. 
@@ -49,9 +53,27 @@ rip -f RIPDP/rdp_sample rip_sample.in
 
 This should create a log file called ***rip_sample.out***, and a ***rip_sample.cgm*** file, with the generated plots.
 
+The plots can be saved to a *pdf* format instead of *cgm* if in the user input file we set ***ncarg_type='pdf'*** (line 9)
+
+### Back trajectories
+Sample input files to compute back-trajectories can be found in **/SAMPLE/BackTraj**.
+Note that there are 3 almost identical files called ***traj_.in***. These files have the flag ***itrajcalc=1***, which tells RIP that they will calculate trajectories. Running
+```
+cd /Sample/BackTraj
+rip -f /Sample/RIPDP/rdp_sample traj1.in
+rip -f /Sample/RIPDP/rdp_sample traj2.in
+rip -f /Sample/RIPDP/rdp_sample traj3.in
+```
+will create the trajectories from the 3 different starting points (note that *zktraj* is different in each file). Files with endings '.diag', '.out' and '.traj' should have been generated.
+
+We can now plot these trajectories with ***traj_plot.in*** by running
+```
+rip -f /Sample/RIPDP/rdp_sample traj_plot.in
+```
+
 ### Visualizing the results
 
-To be able to see the plots in the cgm file, we need to use **idt**, which we do as follows:
+To be able to see the plots in **cgm** files, we need to use **idt**, by running
 ```
-idt rip_sample.cgm
+idt /Sample/rip_sample.cgm
 ```

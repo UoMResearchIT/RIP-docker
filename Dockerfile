@@ -53,15 +53,9 @@ ENV PATH=/RIP_47/:$PATH
 ENV RIP_ROOT=/RIP_47
 
 
-
-WORKDIR /SAMPLE
-WORKDIR /SAMPLE/RIPDP
-WORKDIR /SAMPLE/WRFData
-COPY wrfout_d01.tar.gz /SAMPLE/WRFData
-RUN tar -xzf wrfout_d01.tar.gz \
- && rm wrfout_d01.tar.gz \
- && cp /RIP_47/sample_infiles/ripdp_wrfarw_sample.in /SAMPLE/RIPDP/rdp_wrfarw \
- && cp /RIP_47/sample_infiles/rip_sample.in /SAMPLE/rip_sample.in
-WORKDIR /SAMPLE
+COPY Sample/ /Sample/
+RUN tar -xzf /Sample/WRFData/Katrina.tar.gz -C /Sample/WRFData \
+ && rm /Sample/WRFData/Katrina.tar.gz
+WORKDIR /Sample
 
 #WORKDIR /USER
