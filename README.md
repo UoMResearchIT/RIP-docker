@@ -6,6 +6,24 @@ For some functionality the docker container might need the display, and so it is
 docker run -it --network=host -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --privileged --rm fcoherreazcue/ripdocker
 ```
 
+### Running from CSF
+In csf docker is not available, but Singularity is, and so the image can be imported and converted.
+From the csf run:
+```
+singularity pull docker://fcoherreazcue/ripdocker:latest
+```
+The above command should create a ripdocker_latest.sif file.
+To run the image in a similar way to Docker, we can use the command:
+```
+singularity shell --contain --cleanenv --pwd /Sample ripdocker_latest.sif
+```
+
+To be able to activate the ncl_stable conda environment inside singularity use:
+```
+source /miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable
+```
+
+
 ## RIP Usage
 The following information on how to use RIP is a *very* succint summary of the 
 [docs](https://www2.mmm.ucar.edu/wrf/users/docs/ripug.htm) 

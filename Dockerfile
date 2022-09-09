@@ -8,10 +8,11 @@ SHELL ["/bin/bash", "-c"]
 ###################
 ### Install ncl through miniconda
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
- && bash ./Miniconda3-latest-Linux-x86_64.sh -bup && rm Miniconda3-latest-Linux-x86_64.sh 
-ENV PATH=/root/miniconda3/bin:$PATH
+ && bash ./Miniconda3-latest-Linux-x86_64.sh -bp /miniconda3 \
+ && rm Miniconda3-latest-Linux-x86_64.sh 
+ENV PATH=/miniconda3/bin:$PATH
 RUN conda init bash \
- && conda update -n root --all -y \
+ && conda update --all -y \
  && conda config --set auto_activate_base false \
  && conda create --name ncl_stable -c conda-forge ncl c-compiler fortran-compiler cxx-compiler -y
 
@@ -34,17 +35,17 @@ RUN sed -i '27s|NETCDFLIB	= -L${NETCDF}/lib -lnetcdf CONFIGURE_NETCDFF_LIB|NETCD
  # Still have some duplicate lib calls for: -lhdf5 -lhdf5_hl -lgfortran -lgcc -lz -lm -lX11
  
 #ENV NCARG_ROOT=/usr/lib/x86_64-linux-gnu/ncarg/
-RUN source /root/miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable && printf '3\n' | ./configure
+RUN source /miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable && printf '3\n' | ./configure
 ## !! Your Fortran + NCAR Graphics did not run successfully.
 
 ## Prevent compile warnings. "Fortran 2018 deleted feature: Shared DO termination label..." using an older fortran compiler
 #conda install gfortran_linux-64=8.4.0
-# RUN source /root/miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable \
+# RUN source /miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable \
 #  && conda install -y -c conda-forge gfortran-8 \
 #  && update-alternatives --install /usr/bin/gfortran gfortran /usr/bin/gfortran-8 20 \
 #  && update-alternatives --install /usr/bin/gfortran gfortran /usr/bin/gfortran-9 10
 # && sed -i '332s|printf("sizeof(v5dstruct)=%d|printf("sizeof(v5dstruct)=%lu|g' ./src/v5d.c
-RUN source /root/miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable && ./compile > log_compile.txt
+RUN source /miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable && ./compile > log_compile.txt
 ## !! Warning: Type mismatch between actual argument at (1) and actual argument at (2) (INTEGER(4)/CHARACTER(*)).
 ## !! Warning: Fortran 2018 deleted feature: Shared DO termination label
 ## !! Warning: Fortran 2018 deleted feature: Arithmetic IF statement
