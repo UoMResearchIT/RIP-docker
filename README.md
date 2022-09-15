@@ -54,7 +54,7 @@ A sample namelist file is already saved in the **RIPDP** directory, under the na
 We can then run ripdp as:
 
 ```
-ripdp_wrfarw RIPDP/rdp_sample all WRFData/wrfout_d01_*
+ripdp_wrfarw -n RIPDP/rdp_sample RIPDP/rdp_sample all WRFData/wrfout_d01_*
 ```
 
 This should have created a lot of files inside RIPDP, called rdp_sample_XXX_YYY, where XXX is the time and YYY the name of the WRF variable in each file. 
