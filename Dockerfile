@@ -31,7 +31,11 @@ WORKDIR RIP_47
 # *** Using these 2 lines instead of line 31 made the "unexpected end of file" error appear.
 RUN sed -i '27s|NETCDFLIB	= -L${NETCDF}/lib -lnetcdf CONFIGURE_NETCDFF_LIB|NETCDFLIB	= -L</usr/lib/x86_64-linux-gnu/libm.a> -lm -L${NETCDF}/lib CONFIGURE_NETCDFF_LIB -lnetcdf -lhdf5 -lhdf5_hl -lgfortran -lgcc -lz |g' ./arch/preamble \
  && sed -i '31s|-L${NCARG_ROOT}/lib -lncarg -lncarg_gks -lncarg_c -lX11 -lXext -lpng -lz CONFIGURE_NCARG_LIB| -L${NCARG_ROOT}/lib -lncarg -lncarg_gks -lncarg_c -lX11 -lXext -lpng -lz -lcairo -lfontconfig -lpixman-1 -lfreetype -lexpat -lpthread -lbz2 -lXrender -lgfortran -lgcc -L</usr/lib/x86_64-linux-gnu/> -lm -lhdf5 -lhdf5_hl |g' ./arch/preamble \
- && sed -i '33s| -O|-fallow-argument-mismatch -O |g' ./arch/configure.defaults 
+ && sed -i '33s| -O|-fallow-argument-mismatch -O |g' ./arch/configure.defaults \
+ && sed -i '24s|maxtrajtime=200|maxtrajtime=2800|g' ./src/htrajdraw.f \
+ && sed -i '32s|maxtrajtime=200|maxtrajtime=2800|g' ./src/netasc.f \
+ && sed -i '3s|maxtrajtime=200|maxtrajtime=2800|g' ./src/showtraj.f \
+ && sed -i '3s|maxtrajtime=200|maxtrajtime=2800|g' ./src/tabdiag.f
  # Still have some duplicate lib calls for: -lhdf5 -lhdf5_hl -lgfortran -lgcc -lz -lm -lX11
  
 #ENV NCARG_ROOT=/usr/lib/x86_64-linux-gnu/ncarg/
