@@ -89,3 +89,16 @@ feld=dbz; ptyp=hc; vcor=s; levs=1fb; nohl; cbeg=5; cend=75; cint=5;>
 feld=map; ptyp=hb
 feld=tic; ptyp=hb
 ===========================================================================
+# Modifying the previous plot with lines 98-102 instead of 88-89 zooms in
+# to the area of interest.
+feld=dbz; ptyp=hc; vcor=s; levs=1fb; nohl; cbeg=5; cend=75; cint=5;>
+   cmth=fill; cosq=2.5,white,7.5,g05dbz,12.5,g10dbz,17.5,g15dbz,>
+   22.5,g20dbz,27.5,g25dbz,32.5,g30dbz,37.5,g35dbz,42.5,g40dbz,>
+   47.5,g45dbz,52.5,g50dbz,57.5,g55dbz,62.5,g60dbz,67.5,g65dbz,>
+   72.5,g70dbz,77.5,g75dbz; >
+   xwin=45,65; ywin=30,50
+feld=slp; ptyp=hc; cint=4; colr=red
+feld=uuu,vvv; ptyp=hv; colr=black; intv=2; vcmx=-1
+feld=map; ptyp=hb
+feld=tic; ptyp=hb
+===========================================================================

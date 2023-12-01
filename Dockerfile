@@ -13,8 +13,7 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
 ENV PATH=/miniconda3/bin:$PATH
 RUN conda init bash \
  && conda update --all -y \
- && conda config --set auto_activate_base false \
- && conda create --name ncl_stable -c conda-forge ncl c-compiler fortran-compiler cxx-compiler -y
+ && conda install -c conda-forge ncl c-compiler fortran-compiler cxx-compiler -y
 
 ### Configure RIP
 RUN wget -c https://www2.mmm.ucar.edu/wrf/src/RIP_47.tar.gz \
@@ -34,8 +33,8 @@ RUN sed -i '27s|NETCDFLIB	= -L${NETCDF}/lib -lnetcdf CONFIGURE_NETCDFF_LIB|NETCD
  && sed -i '33s| -O|-fallow-argument-mismatch -O |g' ./arch/configure.defaults 
  # Still have some duplicate lib calls for: -lhdf5 -lhdf5_hl -lgfortran -lgcc -lz -lm -lX11
  
-#ENV NCARG_ROOT=/usr/lib/x86_64-linux-gnu/ncarg/
-RUN source /miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable && printf '3\n' | ./configure
+ENV NCARG_ROOT=/usr/lib/x86_64-linux-gnu/ncarg/
+RUN printf '3\n' | ./configure
 ## !! Your Fortran + NCAR Graphics did not run successfully.
 
 ## Prevent compile warnings. "Fortran 2018 deleted feature: Shared DO termination label..." using an older fortran compiler
@@ -45,7 +44,7 @@ RUN source /miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable && pr
 #  && update-alternatives --install /usr/bin/gfortran gfortran /usr/bin/gfortran-8 20 \
 #  && update-alternatives --install /usr/bin/gfortran gfortran /usr/bin/gfortran-9 10
 # && sed -i '332s|printf("sizeof(v5dstruct)=%d|printf("sizeof(v5dstruct)=%lu|g' ./src/v5d.c
-RUN source /miniconda3/etc/profile.d/conda.sh && conda activate ncl_stable && ./compile > log_compile.txt
+RUN ./compile > log_compile.txt
 ## !! Warning: Type mismatch between actual argument at (1) and actual argument at (2) (INTEGER(4)/CHARACTER(*)).
 ## !! Warning: Fortran 2018 deleted feature: Shared DO termination label
 ## !! Warning: Fortran 2018 deleted feature: Arithmetic IF statement
